@@ -8,7 +8,7 @@ namespace TextCleaner
 {
     public class TextCleanerUtils
     {
-        public string RemoveDoubleSpaces(string input)
+        public string RemoveDoubleSpaces(string input) 
         {
             string output = input;
 
