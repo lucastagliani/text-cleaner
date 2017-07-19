@@ -50,5 +50,77 @@ namespace TextCleanerTest
 
             Assert.AreEqual("Hello World", output);
         }
+
+        [TestMethod]
+        public void RemoveHtmlTags_Null_Null()
+        {
+            string input = null;
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual(null, output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_EmptyString_EmptyString()
+        {
+            string input = string.Empty;
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual(string.Empty, output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithoutTags_StringWithoutTags()
+        {
+            string input = "Hello World";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello World", output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithTagsAtStart_StringWithoutTags()
+        {
+            string input = "<div>Hello World";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello World", output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithTagsAtEnd_StringWithoutTags()
+        {
+            string input = "Hello World</div>";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello World", output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithTwoTagsInDiferentPlaces_StringWithoutTags()
+        {
+            string input = "<div>Hello World</div>";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello World", output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithTwoTagsInSequence_StringWithoutTags()
+        {
+            string input = "Hello <div><a> World";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello  World", output);
+        }
+
+        [TestMethod]
+        public void RemoveHtmlTags_StringWithTagWithAttribute_StringWithoutTags()
+        {
+            string input = "<div id='helloworld'>Hello World</div>";
+            string output = textCleaner.RemoveHtmlTags(input);
+
+            Assert.AreEqual("Hello World", output);
+        }
     }
 }

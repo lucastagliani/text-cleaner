@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace TextCleaner
@@ -21,6 +22,16 @@ namespace TextCleaner
             }
 
             return output;
+        }
+
+        public string RemoveHtmlTags(string input)
+        {
+            if (!string.IsNullOrEmpty(input))
+            {
+                return Regex.Replace(input, "<.*?>", string.Empty);
+            }
+
+            return input;
         }
 
         private string RemoveTripleSpaces(string input)
