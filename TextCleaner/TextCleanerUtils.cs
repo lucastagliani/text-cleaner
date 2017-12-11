@@ -9,9 +9,9 @@ namespace TextCleaner
 {
     public class TextCleanerUtils
     {
-        public string RemoveDoubleSpaces(string input) 
+        public string RemoveDoubleSpaces(string text) 
         {
-            string output = input;
+            string output = text;
 
             if (!string.IsNullOrEmpty(output))
             {
@@ -24,19 +24,19 @@ namespace TextCleaner
             return output;
         }
 
-        public string RemoveHtmlTags(string input)
+        public string RemoveHtmlTags(string text)
         {
-            if (!string.IsNullOrEmpty(input))
+            if (!string.IsNullOrEmpty(text))
             {
-                return Regex.Replace(input, "<.*?>", string.Empty);
+                return Regex.Replace(text, "<.*?>", string.Empty);
             }
 
-            return input;
+            return text;
         }
 
-        private string RemoveTripleSpaces(string input)
+        private string RemoveTripleSpaces(string text)
         {
-            string output = input;
+            string output = text;
 
             if (!string.IsNullOrEmpty(output))
             {
@@ -48,5 +48,55 @@ namespace TextCleaner
 
             return output;
         }
+
+        public string RemoveExcessLineBreakers(string text)
+        {
+            if (text == null)
+            {
+                return string.Empty;
+            }
+
+            while (text.Contains("\r\n\r\n"))
+            {
+                text = text.Replace("\r\n\r\n", "\r\n");
+            }
+
+            return text;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //public string RemoveExcessLineBreakers(string text)
+        //{
+        //    if (string.IsNullOrEmpty(text))
+        //    {
+        //        return string.Empty;
+        //    }
+
+        //    while (text.Contains("\r\n\r\n"))
+        //    {
+        //        text = text.Replace("\r\n\r\n", "\r\n");
+        //    }
+
+        //    return text;
+        //}
     }
 }

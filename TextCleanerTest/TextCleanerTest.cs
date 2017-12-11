@@ -122,5 +122,38 @@ namespace TextCleanerTest
 
             Assert.AreEqual("Hello World", output);
         }
+
+        //Teste 1
+        [TestMethod]
+        public void RemoveExcessLineBreakers_Null_EmptyString()
+        {
+            string input = null;
+
+            string output = textCleaner.RemoveExcessLineBreakers(input);
+
+            Assert.AreEqual(string.Empty, output);
+        }
+
+        //Teste 2
+        [TestMethod]
+        public void RemoveExcessLineBreakers_TextWithTwoLineBreakers_TextWithSimpleLineBreaker()
+        {
+            string input = "Hello World!\r\n\r\nMy name is Lucas!";
+
+            string output = textCleaner.RemoveExcessLineBreakers(input);
+
+            Assert.AreEqual("Hello World!\r\nMy name is Lucas!", output);
+        }
+
+        //Teste 3
+        [TestMethod]
+        public void RemoveExcessLineBreakers_TextWithThreeLineBreakers_TextWithSimpleLineBreaker()
+        {
+            string input = "Hello World!\r\n\r\n\r\nMy name is Lucas!";
+
+            string output = textCleaner.RemoveExcessLineBreakers(input);
+
+            Assert.AreEqual("Hello World!\r\nMy name is Lucas!", output);
+        }
     }
 }
